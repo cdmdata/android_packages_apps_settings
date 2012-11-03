@@ -120,21 +120,25 @@ public class WirelessSettings extends PreferenceActivity {
             if (toggleable == null || !toggleable.contains(Settings.System.RADIO_WIMAX )
                     && isWimaxEnabled) {
                 Preference ps = (Preference) findPreference(KEY_WIMAX_SETTINGS);
-                ps.setDependency(KEY_TOGGLE_AIRPLANE);
+                //ps.setDependency(KEY_TOGGLE_AIRPLANE);
             }
         }
 
+        if ( airplane != null){
+        	getPreferenceScreen().removePreference(airplane);
+        //getPreferenceScreen().removePreference(findPreference(KEY_TETHER_SETTINGS));
+        }
         // Manually set dependencies for Wifi when not toggleable.
         if (toggleable == null || !toggleable.contains(Settings.System.RADIO_WIFI)) {
-            wifi.setDependency(KEY_TOGGLE_AIRPLANE);
-            findPreference(KEY_WIFI_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
-            findPreference(KEY_VPN_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
+            //wifi.setDependency(KEY_TOGGLE_AIRPLANE);
+            //findPreference(KEY_WIFI_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
+            //findPreference(KEY_VPN_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
         }
 
         // Manually set dependencies for Bluetooth when not toggleable.
         if (toggleable == null || !toggleable.contains(Settings.System.RADIO_BLUETOOTH)) {
-            bt.setDependency(KEY_TOGGLE_AIRPLANE);
-            findPreference(KEY_BT_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
+            //bt.setDependency(KEY_TOGGLE_AIRPLANE);
+            //findPreference(KEY_BT_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
         }
 
         // Remove Bluetooth Settings if Bluetooth service is not available.
@@ -150,32 +154,32 @@ public class WirelessSettings extends PreferenceActivity {
         // Disable Tethering if it's not allowed
         ConnectivityManager cm =
                 (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (!cm.isTetheringSupported()) {
-            getPreferenceScreen().removePreference(findPreference(KEY_TETHER_SETTINGS));
-        } else {
-            String[] usbRegexs = cm.getTetherableUsbRegexs();
-            String[] wifiRegexs = cm.getTetherableWifiRegexs();
-            Preference p = findPreference(KEY_TETHER_SETTINGS);
-            if (wifiRegexs.length == 0) {
-                p.setTitle(R.string.tether_settings_title_usb);
-                p.setSummary(R.string.tether_settings_summary_usb);
-            } else {
-                if (usbRegexs.length == 0) {
-                    p.setTitle(R.string.tether_settings_title_wifi);
-                    p.setSummary(R.string.tether_settings_summary_wifi);
-                } else {
-                    p.setTitle(R.string.tether_settings_title_both);
-                    p.setSummary(R.string.tether_settings_summary_both);
-                }
-            }
-        }
+//        if (!cm.isTetheringSupported()) {
+//            getPreferenceScreen().removePreference(findPreference(KEY_TETHER_SETTINGS));
+//        } else {
+//            String[] usbRegexs = cm.getTetherableUsbRegexs();
+//            String[] wifiRegexs = cm.getTetherableWifiRegexs();
+//            Preference p = findPreference(KEY_TETHER_SETTINGS);
+//            if (wifiRegexs.length == 0) {
+//                p.setTitle(R.string.tether_settings_title_usb);
+//                p.setSummary(R.string.tether_settings_summary_usb);
+//            } else {
+//                if (usbRegexs.length == 0) {
+//                    p.setTitle(R.string.tether_settings_title_wifi);
+//                    p.setSummary(R.string.tether_settings_summary_wifi);
+//                } else {
+//                    p.setTitle(R.string.tether_settings_title_both);
+//                    p.setSummary(R.string.tether_settings_summary_both);
+//                }
+//            }
+//        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        mAirplaneModeEnabler.resume();
+        //mAirplaneModeEnabler.resume();
         mWifiEnabler.resume();
         mBtEnabler.resume();
         mNfcEnabler.resume();
@@ -185,7 +189,7 @@ public class WirelessSettings extends PreferenceActivity {
     protected void onPause() {
         super.onPause();
 
-        mAirplaneModeEnabler.pause();
+        //mAirplaneModeEnabler.pause();
         mWifiEnabler.pause();
         mBtEnabler.pause();
         mNfcEnabler.pause();
@@ -196,8 +200,8 @@ public class WirelessSettings extends PreferenceActivity {
         if (requestCode == REQUEST_CODE_EXIT_ECM) {
             Boolean isChoiceYes = data.getBooleanExtra(EXIT_ECM_RESULT, false);
             // Set Airplane mode based on the return value and checkbox state
-            mAirplaneModeEnabler.setAirplaneModeInECM(isChoiceYes,
-                    mAirplaneModePreference.isChecked());
+            //mAirplaneModeEnabler.setAirplaneModeInECM(isChoiceYes,
+                    //mAirplaneModePreference.isChecked());
         }
     }
 }

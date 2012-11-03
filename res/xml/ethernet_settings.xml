@@ -29,10 +29,10 @@
             android:summary="@string/pppoe_mode_summary"
             android:persistent="false" />
 
-    <Preference
+    <!-- <Preference
             android:title="@string/pppoe_manage_account"
             android:summary="@string/pppoe_account_toggle_summary"
             android:key="manage_account"
-            android:persistent="false" />
+            android:persistent="false" />-->
 
 </PreferenceScreen>

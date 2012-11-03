@@ -108,6 +108,8 @@ public class EthernetSettings extends PreferenceActivity implements DialogInterf
         
         mEthernetCheckBox = (CheckBoxPreference) findPreference(KEY_TOGGLE_ETHERNET);
         mPppoeCheckBox = (CheckBoxPreference) findPreference(KEY_TOGGLE_PPPOE);
+        if ( mPppoeCheckBox != null )
+        	getPreferenceScreen().removePreference(mPppoeCheckBox);
                 
         mEthernetEnabler  = new EthernetEnabler(this, mEthernetCheckBox);
         mPppoeEnabler  = new PppoeEnabler(this, mPppoeCheckBox);

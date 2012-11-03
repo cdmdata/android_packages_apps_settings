@@ -137,7 +137,7 @@ public class SecuritySettings extends PreferenceActivity {
         root = this.getPreferenceScreen();
 
         mNetwork = (CheckBoxPreference) getPreferenceScreen().findPreference(LOCATION_NETWORK);
-        mGps = (CheckBoxPreference) getPreferenceScreen().findPreference(LOCATION_GPS);
+        //mGps = (CheckBoxPreference) getPreferenceScreen().findPreference(LOCATION_GPS);
         mAssistedGps = (CheckBoxPreference) getPreferenceScreen().findPreference(ASSISTED_GPS);
 
         PreferenceManager pm = getPreferenceManager();
@@ -172,18 +172,18 @@ public class SecuritySettings extends PreferenceActivity {
         int activePhoneType = TelephonyManager.getDefault().getPhoneType();
 
         // do not display SIM lock for CDMA phone
-        if (TelephonyManager.PHONE_TYPE_CDMA != activePhoneType)
-        {
-            PreferenceScreen simLockPreferences = getPreferenceManager()
-                    .createPreferenceScreen(this);
-            simLockPreferences.setTitle(R.string.sim_lock_settings_category);
-            // Intent to launch SIM lock settings
-            simLockPreferences.setIntent(new Intent().setClassName(PACKAGE, ICC_LOCK_SETTINGS));
-            PreferenceCategory simLockCat = new PreferenceCategory(this);
-            simLockCat.setTitle(R.string.sim_lock_settings_title);
-            root.addPreference(simLockCat);
-            simLockCat.addPreference(simLockPreferences);
-        }
+//        if (TelephonyManager.PHONE_TYPE_CDMA != activePhoneType)
+//        {
+//            PreferenceScreen simLockPreferences = getPreferenceManager()
+//                    .createPreferenceScreen(this);
+//            simLockPreferences.setTitle(R.string.sim_lock_settings_category);
+//            // Intent to launch SIM lock settings
+//            simLockPreferences.setIntent(new Intent().setClassName(PACKAGE, ICC_LOCK_SETTINGS));
+//            PreferenceCategory simLockCat = new PreferenceCategory(this);
+//            simLockCat.setTitle(R.string.sim_lock_settings_title);
+//            root.addPreference(simLockCat);
+//            simLockCat.addPreference(simLockPreferences);
+//        }
 
         // Passwords
         PreferenceCategory passwordsCat = new PreferenceCategory(this);
@@ -197,30 +197,30 @@ public class SecuritySettings extends PreferenceActivity {
         showPassword.setPersistent(false);
         passwordsCat.addPreference(showPassword);
 
-        // Device policies
-        PreferenceCategory devicePoliciesCat = new PreferenceCategory(this);
-        devicePoliciesCat.setTitle(R.string.device_admin_title);
-        root.addPreference(devicePoliciesCat);
-
-        Preference deviceAdminButton = new Preference(this);
-        deviceAdminButton.setTitle(R.string.manage_device_admin);
-        deviceAdminButton.setSummary(R.string.manage_device_admin_summary);
-        Intent deviceAdminIntent = new Intent();
-        deviceAdminIntent.setClass(this, DeviceAdminSettings.class);
-        deviceAdminButton.setIntent(deviceAdminIntent);
-        devicePoliciesCat.addPreference(deviceAdminButton);
-
-        // Credential storage
-        PreferenceCategory credentialsCat = new PreferenceCategory(this);
-        credentialsCat.setTitle(R.string.credentials_category);
-        root.addPreference(credentialsCat);
-        mCredentialStorage.createPreferences(credentialsCat, CredentialStorage.TYPE_KEYSTORE);
-
-        // File System Encryption
-        PreferenceCategory encryptedfsCat = new PreferenceCategory(this);
-        encryptedfsCat.setTitle(R.string.encrypted_fs_category);
-        //root.addPreference(encryptedfsCat);
-        mCredentialStorage.createPreferences(encryptedfsCat, CredentialStorage.TYPE_ENCRYPTEDFS);
+//        // Device policies
+//        PreferenceCategory devicePoliciesCat = new PreferenceCategory(this);
+//        devicePoliciesCat.setTitle(R.string.device_admin_title);
+//        root.addPreference(devicePoliciesCat);
+//
+//        Preference deviceAdminButton = new Preference(this);
+//        deviceAdminButton.setTitle(R.string.manage_device_admin);
+//        deviceAdminButton.setSummary(R.string.manage_device_admin_summary);
+//        Intent deviceAdminIntent = new Intent();
+//        deviceAdminIntent.setClass(this, DeviceAdminSettings.class);
+//        deviceAdminButton.setIntent(deviceAdminIntent);
+//        devicePoliciesCat.addPreference(deviceAdminButton);
+//
+//        // Credential storage
+//        PreferenceCategory credentialsCat = new PreferenceCategory(this);
+//        credentialsCat.setTitle(R.string.credentials_category);
+//        root.addPreference(credentialsCat);
+//        mCredentialStorage.createPreferences(credentialsCat, CredentialStorage.TYPE_KEYSTORE);
+//
+//        // File System Encryption
+//        PreferenceCategory encryptedfsCat = new PreferenceCategory(this);
+//        encryptedfsCat.setTitle(R.string.encrypted_fs_category);
+//        //root.addPreference(encryptedfsCat);
+//        mCredentialStorage.createPreferences(encryptedfsCat, CredentialStorage.TYPE_ENCRYPTEDFS);
         return root;
     }
 
@@ -239,7 +239,7 @@ public class SecuritySettings extends PreferenceActivity {
         mShowPassword.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.TEXT_SHOW_PASSWORD, 1) != 0);
 
-        mCredentialStorage.resume();
+        //mCredentialStorage.resume();
     }
 
     @Override
@@ -264,12 +264,12 @@ public class SecuritySettings extends PreferenceActivity {
             Settings.Secure.setLocationProviderEnabled(getContentResolver(),
                     LocationManager.NETWORK_PROVIDER, mNetwork.isChecked());
         } else if (preference == mGps) {
-            boolean enabled = mGps.isChecked();
-            Settings.Secure.setLocationProviderEnabled(getContentResolver(),
-                    LocationManager.GPS_PROVIDER, enabled);
-            if (mAssistedGps != null) {
-                mAssistedGps.setEnabled(enabled);
-            }
+//            boolean enabled = mGps.isChecked();
+//            Settings.Secure.setLocationProviderEnabled(getContentResolver(),
+//                    LocationManager.GPS_PROVIDER, enabled);
+//            if (mAssistedGps != null) {
+//                mAssistedGps.setEnabled(enabled);
+//            }
         } else if (preference == mAssistedGps) {
             Settings.Secure.putInt(getContentResolver(), Settings.Secure.ASSISTED_GPS_ENABLED,
                     mAssistedGps.isChecked() ? 1 : 0);
@@ -287,7 +287,7 @@ public class SecuritySettings extends PreferenceActivity {
                 res, LocationManager.GPS_PROVIDER);
         mNetwork.setChecked(Settings.Secure.isLocationProviderEnabled(
                 res, LocationManager.NETWORK_PROVIDER));
-        mGps.setChecked(gpsEnabled);
+        //mGps.setChecked(gpsEnabled);
         if (mAssistedGps != null) {
             mAssistedGps.setChecked(Settings.Secure.getInt(res,
                     Settings.Secure.ASSISTED_GPS_ENABLED, 2) == 1);

@@ -29,15 +29,15 @@
                 android:targetClass="com.android.settings.WirelessSettings" />
         </com.android.settings.IconPreferenceScreen>
 
-        <com.android.settings.IconPreferenceScreen
+        <!-- <com.android.settings.IconPreferenceScreen
             android:key="call_settings"
             settings:icon="@drawable/ic_settings_call"
-            android:title="@string/call_settings_title">
+            android:title="@string/call_settings_title" >
             <intent
                 android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.phone"
                 android:targetClass="com.android.phone.CallFeaturesSetting" />
-        </com.android.settings.IconPreferenceScreen>
+        </com.android.settings.IconPreferenceScreen>-->
 
         <!-- Sound -->
 
@@ -98,7 +98,7 @@
 
         <!-- Privacy -->
 
-        <com.android.settings.IconPreferenceScreen
+        <!-- <com.android.settings.IconPreferenceScreen
             settings:icon="@drawable/ic_settings_privacy"
             android:title="@string/privacy_settings"
             android:key="privacy_settings">
@@ -106,7 +106,7 @@
                 android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.PrivacySettings" />
-        </com.android.settings.IconPreferenceScreen>
+        </com.android.settings.IconPreferenceScreen> -->
 
         <!-- Storage -->
 
@@ -131,25 +131,25 @@
 
         <!-- Voice input & output -->
 
-        <com.android.settings.IconPreferenceScreen
+        <!-- <com.android.settings.IconPreferenceScreen
             settings:icon="@drawable/ic_settings_speech"
             android:title="@string/voice_input_output_settings">
             <intent
                 android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.VoiceInputOutputSettings" />
-        </com.android.settings.IconPreferenceScreen>
+        </com.android.settings.IconPreferenceScreen> -->
 
         <!-- Accessibility feedback -->
 
-        <com.android.settings.IconPreferenceScreen
+        <!-- <com.android.settings.IconPreferenceScreen
             settings:icon="@drawable/ic_settings_accessibility"
             android:title="@string/accessibility_settings">
             <intent
                 android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.AccessibilitySettings" />
-        </com.android.settings.IconPreferenceScreen>
+        </com.android.settings.IconPreferenceScreen> -->
 
         <!-- Dock -->
 

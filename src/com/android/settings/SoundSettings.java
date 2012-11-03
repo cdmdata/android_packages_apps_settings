@@ -108,8 +108,8 @@ public class SoundSettings extends PreferenceActivity implements
 
         mSilent = (CheckBoxPreference) findPreference(KEY_SILENT);
 
-        mVibrate = (ListPreference) findPreference(KEY_VIBRATE);
-        mVibrate.setOnPreferenceChangeListener(this);
+        //mVibrate = (ListPreference) findPreference(KEY_VIBRATE);
+        //mVibrate.setOnPreferenceChangeListener(this);
 
         mDtmfTone = (CheckBoxPreference) findPreference(KEY_DTMF_TONE);
         mDtmfTone.setPersistent(false);
@@ -120,9 +120,9 @@ public class SoundSettings extends PreferenceActivity implements
         mSoundEffects.setChecked(Settings.System.getInt(resolver,
                 Settings.System.SOUND_EFFECTS_ENABLED, 0) != 0);
         mHapticFeedback = (CheckBoxPreference) findPreference(KEY_HAPTIC_FEEDBACK);
-        mHapticFeedback.setPersistent(false);
-        mHapticFeedback.setChecked(Settings.System.getInt(resolver,
-                Settings.System.HAPTIC_FEEDBACK_ENABLED, 0) != 0);
+//        mHapticFeedback.setPersistent(false);
+//        mHapticFeedback.setChecked(Settings.System.getInt(resolver,
+//                Settings.System.HAPTIC_FEEDBACK_ENABLED, 0) != 0);
         mLockSounds = (CheckBoxPreference) findPreference(KEY_LOCK_SOUNDS);
         mLockSounds.setPersistent(false);
         mLockSounds.setChecked(Settings.System.getInt(resolver,
@@ -259,10 +259,10 @@ public class SoundSettings extends PreferenceActivity implements
 
         String phoneVibrateSetting = getPhoneVibrateSettingValue();
 
-        if (! phoneVibrateSetting.equals(mVibrate.getValue()) || force) {
-            mVibrate.setValue(phoneVibrateSetting);
-        }
-        mVibrate.setSummary(mVibrate.getEntry());
+//        if (! phoneVibrateSetting.equals(mVibrate.getValue()) || force) {
+//            mVibrate.setValue(phoneVibrateSetting);
+//        }
+//        mVibrate.setSummary(mVibrate.getEntry());
 
         int silentModeStreams = Settings.System.getInt(getContentResolver(),
                 Settings.System.MODE_RINGER_STREAMS_AFFECTED, 0);
@@ -300,9 +300,10 @@ public class SoundSettings extends PreferenceActivity implements
             Settings.System.putInt(getContentResolver(), Settings.System.SOUND_EFFECTS_ENABLED,
                     mSoundEffects.isChecked() ? 1 : 0);
 
-        } else if (preference == mHapticFeedback) {
-            Settings.System.putInt(getContentResolver(), Settings.System.HAPTIC_FEEDBACK_ENABLED,
-                    mHapticFeedback.isChecked() ? 1 : 0);
+        } 
+        else if (preference == mHapticFeedback) {
+//            Settings.System.putInt(getContentResolver(), Settings.System.HAPTIC_FEEDBACK_ENABLED,
+//                    mHapticFeedback.isChecked() ? 1 : 0);
 
         } else if (preference == mLockSounds) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SOUNDS_ENABLED,
@@ -328,8 +329,8 @@ public class SoundSettings extends PreferenceActivity implements
                 Log.e(TAG, "could not persist emergency tone setting", e);
             }
         } else if (preference == mVibrate) {
-            setPhoneVibrateSettingValue(objValue.toString());
-            updateState(false);
+//            setPhoneVibrateSettingValue(objValue.toString());
+//            updateState(false);
         }
 
         return true;

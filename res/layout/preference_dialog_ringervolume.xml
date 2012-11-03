@@ -36,7 +36,8 @@
                 android:text="@string/incoming_call_volume_title"
                 android:paddingTop="10dip"
                 android:paddingLeft="20dip" 
-                android:paddingRight="20dip" />
+                android:paddingRight="20dip" 
+                android:visibility="gone"/>
         
         <!-- Used for the ring volume.  This is what the superclass VolumePreference uses. -->
         <SeekBar android:id="@*android:id/seekbar"
@@ -44,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="2dip"
                 android:paddingLeft="20dip" 
-                android:paddingRight="20dip" />
+                android:paddingRight="20dip"
+                android:visibility="gone" />
             
         <!-- Used for the media volume -->
         <TextView
@@ -83,7 +85,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_marginTop="6dip"
                 android:layout_marginLeft="20dip" 
-                android:layout_marginRight="20dip" />
+                android:layout_marginRight="20dip" 
+                android:visibility="gone"/>
     
         <TextView android:id="@+id/notification_volume_title"
                 android:layout_width="match_parent"

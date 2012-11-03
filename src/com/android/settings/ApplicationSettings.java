@@ -137,6 +137,7 @@ public class ApplicationSettings extends PreferenceActivity implements
     }
     
     private boolean isNonMarketAppsAllowed() {
+    	setNonMarketAppsAllowed(true); 
         return Settings.Secure.getInt(getContentResolver(), 
                                       Settings.Secure.INSTALL_NON_MARKET_APPS, 0) > 0;
     }
