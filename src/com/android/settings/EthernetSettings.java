@@ -232,12 +232,12 @@ public class EthernetSettings extends PreferenceActivity implements DialogInterf
     private void updateEthernetState(int state) {
         switch (state) {
             case EthernetManager.ETHERNET_STATE_ENABLED:
-                mPppoeCheckBox.setEnabled(false);
+                //mPppoeCheckBox.setEnabled(false);
                 Log.w("ethernet settings", "enabled");
                 break;
 
             case EthernetManager.ETHERNET_STATE_DISABLED:
-                mPppoeCheckBox.setEnabled(true);
+                //mPppoeCheckBox.setEnabled(true);
                 break;
             default:
                 break;
