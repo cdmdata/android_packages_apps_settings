@@ -2792,4 +2792,27 @@ found in the list of installed applications.</string>
     <string name="status_wimax_mac_address">4G MAC address</string>
 
     <string name="additional_system_update_settings_list_item_title">Additional system updates</string>
+    
+    
+    <!-- Ethernet configuration dialog -->
+    <string name="eth_config_title">Configure Ethernet Device</string>
+    <string name="eth_setting">Ethernet Setting</string>
+	<string name="eth_dev_list">Ethernet Devices:</string>
+	<string name="eth_con_type">Connection Type</string>
+	<string name="eth_con_type_dhcp">Dhcp</string>
+	<string name="eth_con_type_manual">Static IP</string>
+	<string name="eth_dns">DNS address</string>
+	<string name="eth_gw">Default Router</string>
+	<string name="eth_ipaddr">IP address</string>
+	<string name="eth_quick_toggle_title">Ethernet</string>
+	<string name="eth_toggle_summary_on">Turn on Ethernet </string>
+	<string name="eth_conf_save">Save</string>
+	<string name="eth_conf_cancel">Cancel</string>
+	<string name="eth_radio_ctrl_title">Ethernet Configuration</string>
+	<string name="eth_radio_ctrl_summary">Configure Ethernet devices</string>
+	<string name="eth_conf_perf_title">Ethernet Configuration</string>
+	<string name="eth_conf_summary">Configure Ethernet Devices</string>
+	<string name="eth_mask">Netmask</string>
+	<string name="eth_toggle_summary_off">Turn off Ethernet</string>
+    
 </resources>

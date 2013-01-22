@@ -27,6 +27,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.net.EthernetManager;
 import android.preference.Preference;
 import android.preference.CheckBoxPreference;
 import android.provider.Settings;
@@ -40,6 +41,8 @@ public class WifiEnabler implements Preference.OnPreferenceChangeListener {
 
     private final WifiManager mWifiManager;
     private final IntentFilter mIntentFilter;
+    private final EthernetManager mEthernetManager;
+    
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -68,6 +71,9 @@ public class WifiEnabler implements Preference.OnPreferenceChangeListener {
         // The order matters! We really should not depend on this. :(
         mIntentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
         mIntentFilter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+        
+        mEthernetManager = (EthernetManager) context
+				.getSystemService(Context.ETHERNET_SERVICE);
     }
 
     public void resume() {
@@ -84,6 +90,15 @@ public class WifiEnabler implements Preference.OnPreferenceChangeListener {
     public boolean onPreferenceChange(Preference preference, Object value) {
         boolean enable = (Boolean) value;
     
+        /*
+		 * Ethernet and wifi are mutaully exclusive. Even though there is code
+		 * deep down that would diconnect the OTHER default network, the
+		 * checkbox for wifi would still be checked and the radio would go into
+		 * a endless cycle of connect/disconnect. Use WifiManager to
+		 * disable/enable Wifi based on ethernet setting.
+		 */
+        mEthernetManager.setEthernetEnabled(!enable);
+        
         // Show toast message if Wi-Fi is not allowed in airplane mode
         if (enable && !WirelessSettings
                 .isRadioAllowed(mContext, Settings.System.RADIO_WIFI)) {

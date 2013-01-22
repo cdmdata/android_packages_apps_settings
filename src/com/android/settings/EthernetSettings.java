@@ -60,6 +60,7 @@ public class EthernetSettings extends PreferenceActivity implements DialogInterf
 
     private static final String KEY_TOGGLE_ETHERNET = "toggle_ethernet";
     private static final String KEY_TOGGLE_PPPOE = "toggle_pppoe";
+    private static final String KEY_CONF_ETH = "ETHERNET_config";
 
     private static final int MENU_ID_SCAN = Menu.FIRST;
     private static final int MENU_ID_ADVANCED = Menu.FIRST + 1;
@@ -85,6 +86,10 @@ public class EthernetSettings extends PreferenceActivity implements DialogInterf
     private Button mAddAccountButton;
     
     private PppoeDialog mDialog;
+    
+    //Ethernet preference and dialog
+    private EthernetConfigDialog mEthConfigDialog;
+    private Preference mEthConfigPref;
 
     public EthernetSettings() {
         mFilter = new IntentFilter();
@@ -119,6 +124,7 @@ public class EthernetSettings extends PreferenceActivity implements DialogInterf
         if(Settings.Secure.getString(getContentResolver(), Settings.Secure.PPPOE_USERNAME) != null)
             mManageAccount.setSummary(R.string.pppoe_account_inputted);
 
+        mEthConfigPref = findPreference("eth_config");
     }
 
     @Override
@@ -155,6 +161,11 @@ public class EthernetSettings extends PreferenceActivity implements DialogInterf
     public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
         if (preference == mManageAccount) {
             showDialog();
+        }
+        
+        if (preference == mEthConfigPref) {
+        	mEthConfigDialog = new EthernetConfigDialog(this, mEthernetEnabler);
+            mEthConfigDialog.show();
         }
         return true;
     }

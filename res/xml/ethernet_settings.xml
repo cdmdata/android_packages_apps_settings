@@ -28,11 +28,18 @@
             android:title="@string/pppoe_mode"
             android:summary="@string/pppoe_mode_summary"
             android:persistent="false" />
-
-    <!-- <Preference
+<!--
+    <Preference
             android:title="@string/pppoe_manage_account"
             android:summary="@string/pppoe_account_toggle_summary"
             android:key="manage_account"
-            android:persistent="false" />-->
-
+            android:persistent="false" />
+ -->
+	
+	<Preference
+            android:title="@string/eth_conf_perf_title"
+            android:summary="@string/eth_conf_summary"
+            android:key="eth_config"
+            android:persistent="false" />
+	
 </PreferenceScreen>
