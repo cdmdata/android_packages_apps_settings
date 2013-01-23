@@ -97,8 +97,9 @@ public class WifiEnabler implements Preference.OnPreferenceChangeListener {
 		 * a endless cycle of connect/disconnect. Use WifiManager to
 		 * disable/enable Wifi based on ethernet setting.
 		 */
-        mEthernetManager.setEthernetEnabled(!enable);
-        
+        if (enable){
+        	mEthernetManager.setEthernetEnabled(false);
+        }
         // Show toast message if Wi-Fi is not allowed in airplane mode
         if (enable && !WirelessSettings
                 .isRadioAllowed(mContext, Settings.System.RADIO_WIFI)) {

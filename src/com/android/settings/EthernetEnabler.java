@@ -95,8 +95,10 @@ public class EthernetEnabler implements Preference.OnPreferenceChangeListener {
 		 * a endless cycle of connect/disconnect. Use WifiManager to
 		 * disable/enable Wifi based on ethernet setting.
 		 */
-		mWifiManager.setWifiEnabled(!enable);
-
+		if (enable) {
+			mWifiManager.setWifiEnabled(false);
+		}
+		
 		if (mEthernetManager.setEthernetEnabled(enable)) {
 			mCheckBox.setEnabled(false);
 		} else {
