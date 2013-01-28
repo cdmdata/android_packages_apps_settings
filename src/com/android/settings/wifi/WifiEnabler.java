@@ -98,7 +98,10 @@ public class WifiEnabler implements Preference.OnPreferenceChangeListener {
 		 * disable/enable Wifi based on ethernet setting.
 		 */
         if (enable){
-        	mEthernetManager.setEthernetEnabled(false);
+        	try {
+        		mEthernetManager.setEthernetEnabled(false);
+        	}
+        	catch (NullPointerException e){}
         }
         // Show toast message if Wi-Fi is not allowed in airplane mode
         if (enable && !WirelessSettings
