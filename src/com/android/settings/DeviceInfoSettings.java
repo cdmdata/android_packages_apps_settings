@@ -28,9 +28,11 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -100,9 +102,27 @@ public class DeviceInfoSettings extends PreferenceActivity {
 
         // These are contained by the root preference screen
         parentPreference = getPreferenceScreen();
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference,
-                KEY_SYSTEM_UPDATE_SETTINGS,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
+//        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference,
+//                KEY_SYSTEM_UPDATE_SETTINGS,
+//                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
+        
+        Preference pp = findPreference(KEY_SYSTEM_UPDATE_SETTINGS);
+        if (pp != null) {
+        	pp.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+                public boolean onPreferenceClick(Preference preference) {
+                	Log.d(TAG, "Sending intent for system UPDATE");
+                	
+                	Toast.makeText(getApplicationContext(), R.string.system_update_settings_toast , Toast.LENGTH_SHORT).show();
+                	
+                	Intent intent = new Intent();
+                	intent.setAction("com.cdmdata.otaupdateservice.CHECK_FOR_UPDATE");
+                	DeviceInfoSettings.this.sendBroadcast(intent);
+                	
+                	return true;
+                }
+            });
+        }
+        
         Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_CONTRIBUTORS,
                 Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
 

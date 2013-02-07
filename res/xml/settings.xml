@@ -185,4 +185,6 @@
                 android:targetClass="com.android.settings.DeviceInfoSettings" />
         </com.android.settings.IconPreferenceScreen>
 
+      
+        
 </PreferenceScreen>

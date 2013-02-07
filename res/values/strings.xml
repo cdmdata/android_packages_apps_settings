@@ -1279,7 +1279,8 @@
     <string name="device_info_settings">Phone status</string>
 
     <!-- About phone screen, list item title.  Takes the user to the screen for seeing and installing system updates. -->
-    <string name="system_update_settings_list_item_title">System updates</string>
+    <string name="system_update_settings_list_item_title">Check for System Update</string>
+    <string name="system_update_settings_toast">Checking for System Updates. A notification will appear if an update is available...</string>
     <!-- About phone screen, list item summary.  Takes the user to the screen for seeing and installing system updates. -->
     <string name="system_update_settings_list_item_summary">""</string>
 
