@@ -40,6 +40,14 @@ import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.BufferedReader;
+
 
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
@@ -67,6 +75,7 @@ public class Status extends PreferenceActivity {
 
     private static final String KEY_WIMAX_MAC_ADDRESS = "wimax_mac_address";
     private static final String KEY_WIFI_MAC_ADDRESS = "wifi_mac_address";
+    private static final String KEY_ETH0_MAC_ADDRESS = "eth0_mac_address";
     private static final String KEY_BT_ADDRESS = "bt_address";
     private static final int EVENT_SIGNAL_STRENGTH_CHANGED = 200;
     private static final int EVENT_SERVICE_STATE_CHANGED = 300;
@@ -241,6 +250,7 @@ public class Status extends PreferenceActivity {
         setWimaxStatus();
         setWifiStatus();
         setBtStatus();
+        setEth0Status();
     }
     
     @Override
@@ -405,6 +415,13 @@ public class Status extends PreferenceActivity {
                 : getString(R.string.status_unavailable));
     }
 
+    private void setEth0Status() {
+        Preference eth0MacAddressPref = findPreference(KEY_ETH0_MAC_ADDRESS);
+        String macAddress = getEthernetMacId();
+        eth0MacAddressPref.setSummary(!TextUtils.isEmpty(macAddress) ? macAddress 
+                : getString(R.string.status_unavailable));
+    }
+
     private void setBtStatus() {
         BluetoothAdapter bluetooth = BluetoothAdapter.getDefaultAdapter();
         Preference btAddressPref = findPreference(KEY_BT_ADDRESS);
@@ -418,6 +435,20 @@ public class Status extends PreferenceActivity {
                     : getString(R.string.status_unavailable));
         }
     }
+    
+	private String getEthernetMacId() {
+		String MACAddress = null;
+		try {
+			MACAddress = readFile("/sys/class/net/eth0/address");
+		}
+		catch (Exception e){}
+		
+		if (MACAddress != null)
+			return MACAddress;
+		else
+			return "Unknown";
+	}
+
 
     void updateTimes() {
         long at = SystemClock.uptimeMillis() / 1000;
@@ -445,4 +476,24 @@ public class Status extends PreferenceActivity {
 
         return h + ":" + pad(m) + ":" + pad(s);
     }
+    
+    private String readFile(String file) throws IOException {
+		return readFile(new FileReader(file));
+	}
+
+    private String readFile(File file) throws IOException {
+		return readFile(new FileReader(file));
+	}
+
+    private String readFile(FileReader fileReader) throws IOException {
+		BufferedReader reader = new BufferedReader(fileReader);
+		String line = null;
+		StringBuilder stringBuilder = new StringBuilder();
+		String ls = System.getProperty("line.separator");
+		while ((line = reader.readLine()) != null) {
+			stringBuilder.append(line);
+			stringBuilder.append(ls);
+		}
+		return stringBuilder.toString();
+	}
 }

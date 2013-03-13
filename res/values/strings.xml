@@ -1338,6 +1338,7 @@
     <string name="status_operator">Network</string>
     <!-- About phone, status item title.  The MAC address of the Wi-Fi network adapter. -->
     <string name="status_wifi_mac_address">Wi-Fi MAC address</string>
+    <string name="status_eth0_mac_address">Ethernet MAC address</string>
     <!-- About phone, status item title.  The bluetooth adapter's hardware address-->
     <string name="status_bt_address">Bluetooth address</string>
     <!-- About phone, status item value if the actual value is not available. -->
