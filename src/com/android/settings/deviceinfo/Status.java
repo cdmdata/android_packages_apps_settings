@@ -47,6 +47,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import android.os.Build;
 
 
 import com.android.internal.telephony.Phone;
@@ -76,6 +77,7 @@ public class Status extends PreferenceActivity {
     private static final String KEY_WIMAX_MAC_ADDRESS = "wimax_mac_address";
     private static final String KEY_WIFI_MAC_ADDRESS = "wifi_mac_address";
     private static final String KEY_ETH0_MAC_ADDRESS = "eth0_mac_address";
+    private static final String KEY_DEVICE_SERIAL_NO = "device_serial_no";
     private static final String KEY_BT_ADDRESS = "bt_address";
     private static final int EVENT_SIGNAL_STRENGTH_CHANGED = 200;
     private static final int EVENT_SERVICE_STATE_CHANGED = 300;
@@ -251,6 +253,7 @@ public class Status extends PreferenceActivity {
         setWifiStatus();
         setBtStatus();
         setEth0Status();
+        setSerialNo();
     }
     
     @Override
@@ -419,6 +422,13 @@ public class Status extends PreferenceActivity {
         Preference eth0MacAddressPref = findPreference(KEY_ETH0_MAC_ADDRESS);
         String macAddress = getEthernetMacId();
         eth0MacAddressPref.setSummary(!TextUtils.isEmpty(macAddress) ? macAddress 
+                : getString(R.string.status_unavailable));
+    }
+
+    private void setSerialNo() {
+        Preference serialPref = findPreference(KEY_DEVICE_SERIAL_NO);
+        String serialNo = Build.SERIAL;
+        serialPref.setSummary(!TextUtils.isEmpty(serialNo) ? serialNo 
                 : getString(R.string.status_unavailable));
     }
 
