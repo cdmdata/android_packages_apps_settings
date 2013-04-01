@@ -57,7 +57,7 @@ public class DateTimeSettings
     private static final int DIALOG_DATEPICKER = 0;
     private static final int DIALOG_TIMEPICKER = 1;
     
-    private CheckBoxPreference mAutoPref;
+    //private CheckBoxPreference mAutoPref;
     private Preference mTimePref;
     private Preference mTime24Pref;
     private Preference mTimeZone;
@@ -69,7 +69,7 @@ public class DateTimeSettings
         super.onCreate(icicle);
         
         addPreferencesFromResource(R.xml.date_time_prefs);
-        
+        this.getPreferenceScreen().removePreference(findPreference(KEY_AUTO_TIME));
         initUI();        
     }
     
@@ -79,8 +79,8 @@ public class DateTimeSettings
         mDummyDate = Calendar.getInstance();
         mDummyDate.set(mDummyDate.get(Calendar.YEAR), 11, 31, 13, 0, 0);
         
-        mAutoPref = (CheckBoxPreference) findPreference(KEY_AUTO_TIME);
-        mAutoPref.setChecked(autoEnabled);
+        //mAutoPref = (CheckBoxPreference) findPreference(KEY_AUTO_TIME);
+        //mAutoPref.setChecked(autoEnabled);
         mTimePref = findPreference("time");
         mTime24Pref = findPreference("24 hour");
         mTimeZone = findPreference("timezone");

@@ -14,16 +14,22 @@
  * limitations under the License.
  */
 
-package com.android.settings;
+package com.android.settings.setupwizard;
 
+import com.android.settings.DateTimeSettings;
+import com.android.settings.R;
+import com.android.settings.R.id;
+import com.android.settings.R.layout;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
+import android.view.Window;
 
 public class DateTimeSettingsSetupWizard extends DateTimeSettings implements OnClickListener {
     private View mNextButton;
+    private View mPrevButton;
     
     @Override
     protected void onCreate(Bundle icicle) {
@@ -32,10 +38,30 @@ public class DateTimeSettingsSetupWizard extends DateTimeSettings implements OnC
         setContentView(R.layout.date_time_settings_setupwizard);
         mNextButton = findViewById(R.id.next_button);
         mNextButton.setOnClickListener(this);
+        
+        mPrevButton = findViewById(R.id.prev_button);
+        mPrevButton.setOnClickListener(this);
     }
 
-    public void onClick(View v) {
-        setResult(RESULT_OK);
-        finish();
+	public void onClick(View v) {
+    	switch (v.getId()) {
+		case R.id.next_button:
+			startWifiSetup();
+			break;
+			
+		case R.id.prev_button:
+			onBackPressed();
+			break;
+
+		default:
+			break;
+		}
+        
     }
+
+	private void startWifiSetup() {
+		Intent i = new Intent(Intent.ACTION_MAIN);
+        i.setClass(DateTimeSettingsSetupWizard.this, NetworkSetupWizard.class);
+        startActivity(i);
+	}
 }
