@@ -112,9 +112,9 @@ public class DateTimeSettings
         mDateFormat.setEntryValues(R.array.date_format_values);
         mDateFormat.setValue(currentFormat);
         
-        mTimePref.setEnabled(!autoEnabled);
-        mDatePref.setEnabled(!autoEnabled);
-        mTimeZone.setEnabled(!autoEnabled);
+        mTimePref.setEnabled(true);
+        mDatePref.setEnabled(true);
+        mTimeZone.setEnabled(true);
     }
 
     
