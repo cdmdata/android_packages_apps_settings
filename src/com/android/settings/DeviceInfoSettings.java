@@ -51,6 +51,7 @@ public class DeviceInfoSettings extends PreferenceActivity {
     private static final String KEY_LICENSE = "license";
     private static final String KEY_COPYRIGHT = "copyright";
     private static final String KEY_SYSTEM_UPDATE_SETTINGS = "system_update_settings";
+    private static final String KEY_POWER_USAGE = "power_usage";
     private static final String PROPERTY_URL_SAFETYLEGAL = "ro.url.safetylegal";
     private static final String KEY_UPDATE_SETTING = "additional_system_update_settings";
 
@@ -105,6 +106,10 @@ public class DeviceInfoSettings extends PreferenceActivity {
 //        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference,
 //                KEY_SYSTEM_UPDATE_SETTINGS,
 //                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
+        Preference pu = findPreference(KEY_POWER_USAGE);
+        
+        if ( pu != null )
+        	parentPreference.removePreference(pu);
         
         Preference pp = findPreference(KEY_SYSTEM_UPDATE_SETTINGS);
         if (pp != null) {

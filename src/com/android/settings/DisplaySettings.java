@@ -31,6 +31,9 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceGroup;
+import android.preference.PreferenceScreen;
+
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.Log;
@@ -79,6 +82,16 @@ public class DisplaySettings extends PreferenceActivity implements
                 resolver, SCREEN_OFF_TIMEOUT, FALLBACK_SCREEN_TIMEOUT_VALUE)));
         screenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(screenTimeoutPreference);
+        
+        PreferenceGroup parentPreference = getPreferenceScreen();
+//      Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference,
+//              KEY_SYSTEM_UPDATE_SETTINGS,
+//              Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
+      Preference pu = findPreference(KEY_XEC_DLS_CONTROL);
+      
+      if ( pu != null )
+      	parentPreference.removePreference(pu);
+
     }
 
     private void disableUnusableTimeouts(ListPreference screenTimeoutPreference) {
