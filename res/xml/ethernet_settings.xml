@@ -15,7 +15,7 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        android:title="@string/wifi_settings_category">
+        android:title="@string/ethernet_settings">
 
     <CheckBoxPreference
         android:key="toggle_ethernet"
